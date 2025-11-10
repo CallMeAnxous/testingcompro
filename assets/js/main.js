@@ -1,11 +1,3 @@
-/**
-* Template Name: eNno
-* Template URL: https://bootstrapmade.com/enno-free-simple-bootstrap-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 (function() {
   "use strict";
 
@@ -29,10 +21,12 @@
 
   function mobileNavToogle() {
     document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
+    if (mobileNavToggleBtn) {
+      mobileNavToggleBtn.classList.toggle('bi-list');
+      mobileNavToggleBtn.classList.toggle('bi-x');
+    }
   }
-  mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+  if (mobileNavToggleBtn) mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -74,20 +68,21 @@
   let scrollTop = document.querySelector('.scroll-top');
 
   function toggleScrollTop() {
-    if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-    }
+    if (!scrollTop) return;
+    window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
   }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+  if (scrollTop) {
+    scrollTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
-  });
 
-  window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
+    window.addEventListener('load', toggleScrollTop);
+    document.addEventListener('scroll', toggleScrollTop);
+  }
 
   /**
    * Animation on scroll function and init
@@ -124,19 +119,22 @@
         // toggle local checkbox
         checkbox.checked = !checkbox.checked;
         // Update label text according to state
-        if (checkbox.checked) {
-          label.textContent = 'Tutup Selengkapnya';
-        } else {
-          label.textContent = 'Selengkapnya';
-        }
+        label.textContent = checkbox.checked ? 'Tutup' : 'Selengkapnya';
         // Dispatch change event in case CSS relies on it
         checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+        // keep container class in sync so we can style other children (like h4/span)
+        info.classList.toggle('expanded', checkbox.checked);
       });
 
       // Keep label text in sync if checkbox is changed programmatically
       checkbox.addEventListener('change', () => {
-        label.textContent = checkbox.checked ? 'Tutup Selengkapnya' : 'Selengkapnya';
+        label.textContent = checkbox.checked ? 'Tutup' : 'Selengkapnya';
+        // toggle expanded class on the parent .member-info so CSS can hide/show other elements
+        info.classList.toggle('expanded', checkbox.checked);
       });
+
+      // initialize state in case input is pre-checked for any reason
+      info.classList.toggle('expanded', checkbox.checked);
     });
   }
   window.addEventListener('load', initAboutMentorToggles);
@@ -242,7 +240,49 @@
       }
     })
   }
-  window.addEventListener('load', navmenuScrollspy);
+
+  // Run scrollspy on load and scroll. Also ensure on standalone pages
+  // (profil.html, dokumentasi.html, etc.) the correct navbar link is
+  // marked `active` based on the current filename.
+  function setActiveNavForStandalonePages() {
+    try {
+      const path = window.location.pathname.split('/').pop() || 'index.html';
+      const isIndex = (!path || path === '' || path === 'index.html' || path === '/');
+      const IsProfile = (!path || path === '' || path === 'profil.html' || path === '/');
+
+      // Remove any existing active class from nav links
+      document.querySelectorAll('.navmenu a.active').forEach(l => l.classList.remove('active'));
+
+      if (isIndex) {
+        // On the homepage, mark the Home/Beranda link active. Support href values
+        // like '#', 'index.html', '/', or empty href.
+        document.querySelectorAll('.navmenu a').forEach(a => {
+          const href = (a.getAttribute('href') || '').trim();
+          if (href === '#' || href === 'index.html' || href === './index.html' || href === '/' || href === '') {
+            a.classList.add('active');
+          }
+        });
+        return;
+      }
+
+      // Find a nav link that exactly matches the current filename (ignore anchors)
+      document.querySelectorAll('.navmenu a').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        const filename = href.split('/').pop().split('#')[0];
+        if (filename && filename === path) {
+          a.classList.add('active');
+        }
+      });
+    } catch (e) {
+      // silent catch to avoid breaking navigation if DOM is unusual
+      // console.warn('setActiveNavForStandalonePages error', e);
+    }
+  }
+
+  window.addEventListener('load', () => {
+    navmenuScrollspy();
+    setActiveNavForStandalonePages();
+  });
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
