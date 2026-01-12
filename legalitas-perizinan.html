@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Company Legality - PT Mili Talenta Inspirasi</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Icon Website -->
+    <link href="assets/img/logo-mili.png" rel="icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet" />
+  </head>
+
+  <body class="index-page">
+    <header id="header" class="header d-flex align-items-center sticky-top">
+      <div
+        class="container-fluid container-xl position-relative d-flex align-items-center"
+      >
+        <a href="index.html" class="logo d-flex align-items-center me-auto">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <img src="assets/img/logo-mili.png" alt="PT Mili Talenta Inspirasi" />
+          <h1 class="sitename">PT Mili Talenta Inspirasi</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="index.html" class="active">Beranda</a></li>
+            <li class="dropdown">
+              <a
+                ><span>Tentang Kami</span>
+                <i class="bi bi-chevron-down toggle-dropdown"></i
+              ></a>
+              <ul>
+                <li><a href="profil.html">Profil Perusahaan</a></li>
+                <li class="dropdown">
+                  <a
+                    ><span>Tentang Perusahaan</span>
+                    <i class="bi bi-chevron-down toggle-dropdown"></i
+                  ></a>
+                  <ul>
+                    <li>
+                      <a href="keunggulan-modul.html"
+                        >Keunggulan & Modul Latihan</a
+                      >
+                    </li>
+                    <li>
+                      <a href="legalitas-perizinan.html"
+                        >Legalitas & Perizinan</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="index.html#services">Layanan</a></li>
+            <li><a href="index.html#news">Berita</a></li>
+            <li><a href="index.html#team">Mentor & Mitra</a></li>
+            <li><a href="documentation/dokumentasi.html">Dokumentasi</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+
+        <a class="btn-getstarted" href="index.html#contact"
+          ><strong>Hubungi Kami</strong></a
+        >
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Page Title -->
+      <div class="page-title">
+        <div
+          class="container d-lg-flex justify-content-between align-items-center"
+        >
+          <h1 class="mb-2 mb-lg-0">Legalitas & Perizinan</h1>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="index.html">Beranda</a></li>
+              <li class="current">
+                <a href="legalitas-perizinan.html">Legalitas & Perizinan</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <!-- End Page Title -->
+
+      <!-- Legalitas & Perizinan — Redesigned -->
+      <section
+        id="legalitas"
+        class="legal-section py-5"
+        aria-labelledby="legal-heading"
+      >
+        <style>
+          /* LOCAL CSS — paste here or move to global file */
+          :root {
+            --lg-accent: #22a0f6;
+            --lg-accent-dark: #22a0f6;
+            --lg-bg: #ffffff;
+            --lg-muted: #6b7b88;
+            --lg-card-radius: 12px;
+            --lg-shadow: 0 12px 40px rgba(11, 37, 64, 0.06);
+          }
+
+          .legal-section {
+            background: linear-gradient(180deg, #fbfdff 0%, #ffffff 100%);
+          }
+          .legal-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            font-style: "Roboto", "Raleway", "Ubuntu";
+          }
+
+          .legal-header {
+            text-align: left;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 18px;
+          }
+          .legal-badge {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: inline-grid;
+            place-items: center;
+            background: linear-gradient(
+              180deg,
+              var(--lg-accent),
+              var(--lg-accent-dark)
+            );
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+            box-shadow: 0 10px 30px rgba(34, 160, 246, 0.14);
+          }
+          .legal-title h2 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: #0b2540;
+          }
+          .legal-title span {
+            color: var(--lg-accent);
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 6px;
+          }
+
+          .legal-card {
+            background: var(--lg-bg);
+            border-radius: var(--lg-card-radius);
+            padding: 20px;
+            box-shadow: var(--lg-shadow);
+            border: 1px solid rgba(11, 37, 64, 0.04);
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 18px;
+            align-items: start;
+          }
+          @media (max-width: 920px) {
+            .legal-card {
+              grid-template-columns: 1fr;
+            }
+          }
+
+          /* left: details */
+          .legal-details dl {
+            margin: 0;
+          }
+          .legal-details dt {
+            font-weight: 700;
+            color: #12263f;
+            font-size: 0.95rem;
+            margin-top: 12px;
+          }
+          .legal-details dd {
+            margin: 6px 0 0 0;
+            color: var(--lg-muted);
+            font-size: 0.95rem;
+            line-height: 1.45;
+            padding-left: 4px;
+          }
+
+          .legal-highlight {
+            background: linear-gradient(
+              90deg,
+              rgba(34, 160, 246, 0.06),
+              rgba(15, 99, 200, 0.02)
+            );
+            border-left: 4px solid var(--lg-accent);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+          }
+          .legal-key {
+            font-weight: 800;
+            color: var(--lg-accent-dark);
+            font-size: 1rem;
+            min-width: 90px;
+          }
+          .legal-value {
+            color: #0f2230;
+            font-weight: 600;
+          }
+
+          /* right: actions & docs */
+          .legal-side {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+          }
+          .doc-card {
+            background: linear-gradient(180deg, #fff, #fbfdff);
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid rgba(11, 37, 64, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 24px rgba(11, 37, 64, 0.04);
+          }
+          .doc-thumb {
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            background: linear-gradient(
+              90deg,
+              var(--lg-accent),
+              var(--lg-accent-dark)
+            );
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+          }
+          .doc-body .doc-title {
+            font-weight: 700;
+            color: #0b2540;
+            margin-bottom: 4px;
+          }
+          .doc-body .doc-meta {
+            font-size: 0.85rem;
+            color: var(--lg-muted);
+          }
+
+          .legal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+          }
+          .btn-legal {
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            border: 1px solid rgba(11, 37, 64, 0.06);
+            background: #fff;
+            cursor: pointer;
+          }
+          .btn-legal.primary {
+            background: var(--lg-accent);
+            color: #fff;
+            border-color: var(--lg-accent);
+            box-shadow: 0 8px 22px rgba(34, 160, 246, 0.12);
+          }
+          .btn-legal.ghost {
+            background: transparent;
+          }
+
+          /* small link list */
+          .legal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+          }
+          .legal-links a {
+            color: var(--lg-accent-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+          }
+          .legal-copy {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+          }
+
+          /* subtle footer text */
+          .legal-note {
+            color: var(--lg-muted);
+            font-size: 0.9rem;
+            margin-top: 10px;
+          }
+        </style>
+
+        <div class="legal-container" data-aos="fade-up">
+          <header class="legal-header" aria-hidden="false">
+            <div class="legal-badge" aria-hidden="true">L&P</div>
+            <div class="legal-title">
+              <span>Legalitas & Perizinan</span>
+              <h2 id="legal-heading">Dokumen Resmi Perusahaan</h2>
+              <div class="legal-note">
+                Informasi legal berikut adalah data resmi PT MILI TALENTA
+                INSPIRASI — simpan atau unduh dokumen untuk verifikasi lebih
+                lanjut.
+              </div>
+            </div>
+          </header>
+
+          <div class="legal-card" role="region" aria-labelledby="legal-heading">
+            <!-- LEFT: Structured details -->
+            <div class="legal-details">
+              <dl>
+                <dt>Nama Usaha</dt>
+                <dd><strong>PT MILI TALENTA INSPIRASI</strong></dd>
+
+                <dt>Nomor Induk Berusaha (NIB)</dt>
+                <dd class="legal-copy">
+                  <div class="legal-value" id="nib-value">2507250090999</div>
+                  <button
+                    class="btn-legal"
+                    onclick="copyText('#nib-value', this)"
+                    aria-label="Salin NIB"
+                  >
+                    Salin
+                  </button>
+                </dd>
+
+                <dt>Registrasi Kemenkumham</dt>
+                <dd>AHU-039159.AH.01.30. Tahun 2025</dd>
+
+                <dt>NPWP</dt>
+                <dd class="legal-copy">
+                  <div class="legal-value" id="npwp-value">
+                    1000 0000 0448 8342
+                  </div>
+                  <button
+                    class="btn-legal"
+                    onclick="copyText('#npwp-value', this)"
+                    aria-label="Salin NPWP"
+                  >
+                    Salin
+                  </button>
+                </dd>
+
+                <dt>Alamat Kantor</dt>
+                <dd>
+                  Perumahan Duta Harapan, Jl. Duta Graha VIII Blok E5 No.83, RT
+                  01/RW 11, Kecamatan Bekasi Utara, Kota Bekasi, Jawa Barat
+                </dd>
+              </dl>
+
+              <div class="legal-highlight" role="status" aria-live="polite">
+                <div class="legal-key">Status</div>
+                <div class="legal-value">
+                  Terdaftar & Aktif — Dapat Diverifikasi Secara Resmi
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: docs / actions -->
+            <aside class="legal-side" aria-label="Dokumen dan Tindakan">
+              <div class="doc-card" role="article" aria-labelledby="doc1">
+                <div class="doc-thumb" aria-hidden="true">PDF</div>
+                <div class="doc-body">
+                  <div id="doc1" class="doc-title">
+                    Akte Pendirian Perusahaan
+                  </div>
+                  <div class="doc-meta">Diposting: 2025 • Format: PDF</div>
+                </div>
+              </div>
+
+              <div class="doc-card" role="article" aria-labelledby="doc2">
+                <div class="doc-thumb" aria-hidden="true">NIB</div>
+                <div class="doc-body">
+                  <div id="doc2" class="doc-title">
+                    Nomor Induk Berusaha (NIB) — Bukti
+                  </div>
+                  <div class="doc-meta">
+                    Sertifikat Elektronik • Verifikasi: OSS
+                  </div>
+                </div>
+              </div>
+
+              <div class="legal-links" aria-hidden="false">
+                <a
+                  href="/docs/akte-pendirian.pdf"
+                  class="btn-legal ghost"
+                  role="link"
+                  ><i class="bi bi-download"></i>&nbsp; Unduh Akte Pendirian
+                  (PDF)</a
+                >
+                <a
+                  href="https://oss.go.id"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-legal ghost"
+                  ><i class="bi bi-box-arrow-up-right"></i>&nbsp; Cek di OSS /
+                  Verifikasi</a
+                >
+              </div>
+
+              <div
+                class="legal-actions"
+                role="group"
+                aria-label="Tindakan cepat"
+              >
+                <button
+                  class="btn-legal primary"
+                  onclick="window.location='index.html#contact'"
+                >
+                  <i class="bi bi-chat-dots"></i>&nbsp; Hubungi Legal
+                </button>
+                <button class="btn-legal" onclick="window.print()">
+                  <i class="bi bi-printer"></i>&nbsp; Cetak Halaman
+                </button>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- small JS helper (local) -->
+        <script>
+          function copyText(selector, btn) {
+            try {
+              const el = document.querySelector(selector);
+              const text = el?.innerText?.trim();
+              if (!text) return alert("Tidak ada teks untuk disalin.");
+              navigator.clipboard.writeText(text).then(() => {
+                const old = btn.innerHTML;
+                btn.innerHTML = "Tersalin ✓";
+                setTimeout(() => (btn.innerHTML = old), 1400);
+              });
+            } catch (e) {
+              prompt(
+                "Salin teks berikut:",
+                document.querySelector(selector).innerText
+              );
+            }
+          }
+        </script>
+      </section>
+      <!-- /Legalitas & Perizinan — Redesigned -->
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="container footer-top">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6 footer-about">
+            <a href="index.html" class="d-flex align-items-center">
+              <span class="sitename">PT Mili Talenta Inspirasi</span>
+            </a>
+            <div class="footer-contact pt-3">
+              <p>
+                <strong>Alamat:</strong> Perumahan Duta Harapan Jl. Duta Graha
+                VIII Blok E5 No. 83 Rt. 01/RW11 Kecamatan Bekasi Utara, Kota
+                Bekasi, Jawa Barat
+              </p>
+              <p class="mt-3">
+                <strong>No. Telepon:</strong>
+                <span>085710346642</span> / <span>082125557337</span> /
+                <span>08118860809</span>
+              </p>
+              <p>
+                <strong>Email:</strong> <span>MTIACADEMY1272@gmail.com</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Tentang Kami</h4>
+            <ul>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="index.html">Beranda</a>
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="profil.html#about">Tentang Kami</a>
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="profil.html#vision&mission">Visi & Misi</a>
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="/news/news-list.html">Berita</a>
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="/documentation/dokumentasi.html">Dokumentasi</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Layanan Kami</h4>
+            <ul>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="/service/detail-layanan-1.html"
+                  >Konsultasi Manajemen Kebun</a
+                >
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="/service/detail-layanan-2.html"
+                  >Pengelolaan Keberlanjutan Kebun</a
+                >
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="/service/detail-layanan-3.html"
+                  >Analisis Data Perkebunan</a
+                >
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="/service/detail-layanan-4.html"
+                  >Peningkatan Kualitas Produksi</a
+                >
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="/service/detail-layanan-5.html"
+                  >Strategi Pemasaran Kelapa Sawit</a
+                >
+              </li>
+              <li>
+                <i class="bi bi-chevron-right"></i>
+                <a href="/service/detail-layanan-6.html"
+                  >Pelatihan Sumber Daya Manusia</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-12">
+            <h4>Ikuti Kami</h4>
+            <p>
+              Ikuti kami di media sosial untuk mendapatkan informasi terbaru dan
+              pembaruan seputar layanan dan penawaran kami. Kami aktif di
+              berbagai platform untuk tetap terhubung dengan Anda.
+            </p>
+            <div class="social-links d-flex">
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container copyright text-center mt-4">
+        <p>
+          © <span>Copyright</span>
+          <strong class="px-1 sitename">PT Mili Talenta Inspirasi</strong>
+          <span>All Rights Reserved</span>
+        </p>
+        <div class="credits">
+          Made by
+          <a href="https://polmind.ac.id" target="_blank"
+            >Politeknik Mitra Industri</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Slider JS -->
+    <script>
+      (function () {
+        // Use slider children as slides (not images) so each slide is treated as a full-width panel
+        const slider = document.getElementById("slider");
+        const dotsContainer = document.getElementById("dots");
+        if (!slider) return;
+
+        const slides = Array.from(slider.children).filter(
+          (el) => el.nodeType === 1
+        );
+        const totalSlides = slides.length;
+        let currentIndex = 0;
+
+        // If there are no slides, nothing to do
+        if (totalSlides === 0) return;
+
+        // Ensure slider children are sized via CSS but set transform here
+        function updateSlider() {
+          slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+          const dots = dotsContainer ? Array.from(dotsContainer.children) : [];
+          dots.forEach((d) => d.classList.remove("active"));
+          if (dots[currentIndex]) dots[currentIndex].classList.add("active");
+        }
+
+        // Create dots
+        if (dotsContainer) {
+          dotsContainer.innerHTML = "";
+          for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement("span");
+            dot.classList.add("dot");
+            dot.addEventListener("click", () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+          }
+        }
+
+        function nextSlide() {
+          currentIndex = (currentIndex + 1) % totalSlides;
+          updateSlider();
+        }
+
+        function prevSlide() {
+          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+          updateSlider();
+        }
+
+        function goToSlide(index) {
+          if (index < 0 || index >= totalSlides) return;
+          currentIndex = index;
+          updateSlider();
+        }
+
+        // Expose controls for button onclick handlers used in markup
+        window.nextSlide = nextSlide;
+        window.prevSlide = prevSlide;
+        window.goToSlide = goToSlide;
+
+        // Auto-slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Initialize
+        updateSlider();
+      })();
+    </script>
+
+    <!-- Active navbar link on scroll -->
+    <script>
+      (function () {
+        // Highlight navbar link when its section is in view.
+        const nav = document.getElementById("navmenu");
+        if (!nav) return;
+
+        const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+
+        // Helper: given a section id, return the nav link to activate.
+        function linkForSectionId(id) {
+          // Treat any section that starts with 'home' as the Home link
+          if (id && id.startsWith("home")) {
+            return nav.querySelector('a[href="#home"]');
+          }
+          return nav.querySelector(`a[href="#${id}"]`);
+        }
+
+        // Build a list of observed elements (ignore invalid hrefs)
+        const sections = links
+          .map((a) => a.getAttribute("href"))
+          .filter(Boolean)
+          .map((href) => href.replace("#", ""))
+          .map((id) => document.getElementById(id))
+          .filter(Boolean);
+
+        // Observe all sections (also observe nested slider slides if present)
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.id;
+                const activeLink = linkForSectionId(id);
+                // Clear active from all
+                links.forEach((l) => l.classList.remove("active"));
+                if (activeLink) activeLink.classList.add("active");
+              }
+            });
+          },
+          {
+            root: null,
+            // Use a large rootMargin so the section becomes active when it's near center
+            rootMargin: "-30% 0px -40% 0px",
+            threshold: 0.1,
+          }
+        );
+
+        // Also observe extra slider hero slides (home-2, home-3) if present
+        const extraIds = ["home-2", "home-3"];
+        extraIds.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el && !sections.includes(el)) sections.push(el);
+        });
+
+        sections.forEach((sec) => observer.observe(sec));
+
+        // Optional: update active on load based on current scroll position
+        window.addEventListener("load", () => {
+          sections.forEach((sec) => {
+            const rect = sec.getBoundingClientRect();
+            if (
+              rect.top <= window.innerHeight * 0.35 &&
+              rect.bottom >= window.innerHeight * 0.35
+            ) {
+              const l = linkForSectionId(sec.id);
+              links.forEach((ln) => ln.classList.remove("active"));
+              if (l) l.classList.add("active");
+            }
+          });
+        });
+      })();
+    </script>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

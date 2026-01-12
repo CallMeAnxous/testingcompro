@@ -1,0 +1,501 @@
+(function () {
+  "use strict";
+
+  /**
+   * Apply .scrolled class to the body as the page is scrolled down
+   */
+  function toggleScrolled() {
+    const selectBody = document.querySelector("body");
+    const selectHeader = document.querySelector("#header");
+    if (
+      !selectHeader.classList.contains("scroll-up-sticky") &&
+      !selectHeader.classList.contains("sticky-top") &&
+      !selectHeader.classList.contains("fixed-top")
+    )
+      return;
+    window.scrollY > 100
+      ? selectBody.classList.add("scrolled")
+      : selectBody.classList.remove("scrolled");
+  }
+
+  document.addEventListener("scroll", toggleScrolled);
+  window.addEventListener("load", toggleScrolled);
+
+  /**
+   * Mobile nav toggle
+   */
+  const mobileNavToggleBtn = document.querySelector(".mobile-nav-toggle");
+
+  function mobileNavToogle() {
+    document.querySelector("body").classList.toggle("mobile-nav-active");
+    if (mobileNavToggleBtn) {
+      mobileNavToggleBtn.classList.toggle("bi-list");
+      mobileNavToggleBtn.classList.toggle("bi-x");
+    }
+  }
+  if (mobileNavToggleBtn)
+    mobileNavToggleBtn.addEventListener("click", mobileNavToogle);
+
+  /**
+   * Hide mobile nav on same-page/hash links
+   */
+  document.querySelectorAll("#navmenu a").forEach((navmenu) => {
+    navmenu.addEventListener("click", () => {
+      if (document.querySelector(".mobile-nav-active")) {
+        mobileNavToogle();
+      }
+    });
+  });
+
+  /**
+   * Toggle mobile nav dropdowns
+   */
+  document.querySelectorAll(".navmenu .toggle-dropdown").forEach((navmenu) => {
+    navmenu.addEventListener("click", function (e) {
+      e.preventDefault();
+      this.parentNode.classList.toggle("active");
+      this.parentNode.nextElementSibling.classList.toggle("dropdown-active");
+      e.stopImmediatePropagation();
+    });
+  });
+
+  /**
+   * Preloader
+   */
+  const preloader = document.querySelector("#preloader");
+  if (preloader) {
+    window.addEventListener("load", () => {
+      preloader.remove();
+    });
+  }
+
+  /**
+   * Scroll top button + WhatsApp on inactivity
+   */
+
+  // query tombol sekali
+  const scrollTopEl = document.querySelector(".scroll-top");
+
+  function toggleScrollTop() {
+    if (!scrollTopEl) return;
+    window.scrollY > 100
+      ? scrollTopEl.classList.add("active")
+      : scrollTopEl.classList.remove("active");
+  }
+
+  // masang event untuk tampilan (scroll)
+  if (scrollTopEl) {
+    window.addEventListener("load", toggleScrollTop);
+    document.addEventListener("scroll", toggleScrollTop);
+  }
+
+  // Improved WhatsApp-inactive behavior — mobile-friendly
+  (function () {
+    const INACTIVITY_TIME = 1500; // ms — waktu sebelum berubah ke WA mode
+    let activityTimeout = null;
+    let isWhatsApp = false;
+
+    // flexible selector: coba ID dulu, lalu class
+    const scrollTopEl =
+      document.getElementById("scrollToTop") ||
+      document.querySelector(".scroll-top") ||
+      document.querySelector(".scrollTop");
+
+    if (!scrollTopEl) return; // tidak ada tombol — hentikan
+
+    // icon di dalam tombol (jika ada)
+    const icon = scrollTopEl.querySelector("i");
+
+    // WA number - ganti sesuai kebutuhan (kode negara tanpa +)
+    const WA_NUMBER = "6285212505949";
+    const WA_URL = "https://wa.me/" + WA_NUMBER;
+
+    // pastikan tombol adalah link agar opening di tab baru bekerja
+    if (scrollTopEl.tagName.toLowerCase() !== "a") {
+      // jika bukan <a>, buat atribut data-url dan pasang listener untuk membuka WA ketika WA mode
+      scrollTopEl.dataset.href = scrollTopEl.getAttribute("href") || "#";
+    } else {
+      // jika <a>, set target rel aman
+      scrollTopEl.setAttribute("target", "_blank");
+      scrollTopEl.setAttribute("rel", "noopener noreferrer");
+    }
+
+    // helper mode switches
+    function setToWhatsApp() {
+      if (icon) {
+        icon.classList.remove("bi-arrow-up-short");
+        icon.classList.add("bi-whatsapp");
+      }
+      scrollTopEl.classList.add("whatsapp-mode");
+      if (scrollTopEl.tagName.toLowerCase() === "a") {
+        scrollTopEl.href = WA_URL;
+      } else {
+        scrollTopEl.dataset.href = WA_URL;
+      }
+      isWhatsApp = true;
+    }
+
+    function setToScrollTop() {
+      if (icon) {
+        icon.classList.remove("bi-whatsapp");
+        icon.classList.add("bi-arrow-up-short");
+      }
+      scrollTopEl.classList.remove("whatsapp-mode");
+      if (scrollTopEl.tagName.toLowerCase() === "a") {
+        scrollTopEl.href = "#";
+      } else {
+        scrollTopEl.dataset.href = "#";
+      }
+      isWhatsApp = false;
+    }
+
+    // clear & restart timer
+    function scheduleInactiveMode() {
+      clearTimeout(activityTimeout);
+      activityTimeout = setTimeout(() => {
+        setToWhatsApp();
+      }, INACTIVITY_TIME);
+    }
+
+    // resetActivity: kembalikan ke scrollTop KECUALI klik pada tombol ketika sedang WA mode
+    function resetActivity(e) {
+      // if event is click and the click is on the scroll button and currently WA -> do nothing
+      if (e && e.type === "click") {
+        try {
+          const clickedBtn =
+            e.target &&
+            e.target.closest &&
+            e.target.closest(".scroll-top, #scrollToTop, .scrollTop");
+          if (clickedBtn && isWhatsApp) {
+            // don't reset — let click open WA
+            return;
+          }
+        } catch (err) {
+          // ignore
+        }
+      }
+
+      setToScrollTop();
+      scheduleInactiveMode();
+    }
+
+    // events considered activity (mobile & desktop)
+    const activityEvents = ["scroll", "wheel", "visibilitychange", "focus"];
+
+    activityEvents.forEach((evt) => {
+      // passive for touch/scroll-like events when supported, otherwise fallback
+      try {
+        if (
+          evt === "scroll" ||
+          evt === "touchstart" ||
+          evt === "touchmove" ||
+          evt === "wheel"
+        ) {
+          document.addEventListener(evt, resetActivity, { passive: true });
+        } else {
+          document.addEventListener(evt, resetActivity, false);
+        }
+      } catch (err) {
+        // older browsers fallback
+        document.addEventListener(evt, resetActivity, false);
+      }
+    });
+
+    // global click capture untuk mendeteksi klik di mana saja (capture true)
+    document.addEventListener("click", resetActivity, true);
+
+    // klik pada tombol: handle sesuai mode (WA vs ScrollTop)
+    scrollTopEl.addEventListener("click", function (e) {
+      // jika tombol WA mode -> biarkan buka WA (jika bukan <a>, kita open window)
+      if (isWhatsApp) {
+        if (scrollTopEl.tagName.toLowerCase() === "a") {
+          // <a target=_blank> akan membuka WA di tab baru — biarkan default terjadi
+          return;
+        } else {
+          // bukan <a> -> manual open
+          e.preventDefault();
+          // buka di tab baru
+          window.open(
+            scrollTopEl.dataset.href || WA_URL,
+            "_blank",
+            "noopener,noreferrer"
+          );
+          return;
+        }
+      }
+
+      // jika scrollTop mode -> lakukan scroll ke atas
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    // juga tangani "tap" pada mobile: pointerup/touchend yang kadang tidak memicu click segera
+    // terutama berguna bila tombol bukan <a>
+    function handleTapFallback(evt) {
+      // jika WA mode dan elemen ditap
+      try {
+        const tapped =
+          evt.target &&
+          evt.target.closest &&
+          evt.target.closest(".scroll-top, #scrollToTop, .scrollTop");
+        if (!tapped) return;
+        if (isWhatsApp && scrollTopEl.tagName.toLowerCase() !== "a") {
+          // buka WA
+          window.open(
+            scrollTopEl.dataset.href || WA_URL,
+            "_blank",
+            "noopener,noreferrer"
+          );
+          evt.preventDefault();
+        }
+      } catch (err) {
+        // ignore
+      }
+    }
+    document.addEventListener("touchend", handleTapFallback, { passive: true });
+    document.addEventListener("pointerup", handleTapFallback, false);
+
+    // init: set scroll mode lalu schedule WA mode ketika inactive
+    setToScrollTop();
+    scheduleInactiveMode();
+
+    // bila tab jadi hidden, tetap treat as activity (jgn auto-switch langsung)
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") {
+        resetActivity();
+      } else {
+        // ketika tab hidden, jangan otomatis set WA (opsional: bisa clear timeout)
+        // clearTimeout(activityTimeout);
+      }
+    });
+  })();
+
+  /**
+   * Animation on scroll function and init
+   */
+  function aosInit() {
+    AOS.init({
+      duration: 600,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false,
+    });
+  }
+  window.addEventListener("load", aosInit);
+
+  /**
+   * Fix label/checkbox behavior for the About-Mentor "Selengkapnya" toggles.
+   *
+   * Problem: the markup used repeated id="button-more" and labels with
+   * `for="button-more"`. That makes labels target the first matching id,
+   * not the checkbox inside the same card. To avoid editing HTML, we attach
+   * a click handler to each label inside `.member-info` that toggles the
+   * local checkbox sibling and updates the label text.
+   */
+  function initAboutMentorToggles() {
+    document.querySelectorAll(".member-info").forEach((info) => {
+      const label = info.querySelector("label");
+      const checkbox = info.querySelector('input[type="checkbox"]');
+      const about = info.querySelector(".about-mentor");
+      if (!label || !checkbox || !about) return;
+
+      // Prevent default label behaviour (which may target the wrong input).
+      label.addEventListener("click", (e) => {
+        e.preventDefault();
+        // toggle local checkbox
+        checkbox.checked = !checkbox.checked;
+        // Update label text according to state
+        label.textContent = checkbox.checked ? "Tutup" : "Selengkapnya";
+        // Dispatch change event in case CSS relies on it
+        checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+        // keep container class in sync so we can style other children (like h4/span)
+        info.classList.toggle("expanded", checkbox.checked);
+      });
+
+      // Keep label text in sync if checkbox is changed programmatically
+      checkbox.addEventListener("change", () => {
+        label.textContent = checkbox.checked ? "Tutup" : "Selengkapnya";
+        // toggle expanded class on the parent .member-info so CSS can hide/show other elements
+        info.classList.toggle("expanded", checkbox.checked);
+      });
+
+      // initialize state in case input is pre-checked for any reason
+      info.classList.toggle("expanded", checkbox.checked);
+    });
+  }
+  window.addEventListener("load", initAboutMentorToggles);
+
+  /**
+   * Initiate glightbox
+   */
+  const glightbox = GLightbox({
+    selector: ".glightbox",
+  });
+
+  /**
+   * Initiate Pure Counter
+   */
+  new PureCounter();
+
+  /**
+   * Init isotope layout and filters
+   */
+  document.querySelectorAll(".isotope-layout").forEach(function (isotopeItem) {
+    let layout = isotopeItem.getAttribute("data-layout") ?? "masonry";
+    let filter = isotopeItem.getAttribute("data-default-filter") ?? "*";
+    let sort = isotopeItem.getAttribute("data-sort") ?? "original-order";
+
+    let initIsotope;
+    imagesLoaded(isotopeItem.querySelector(".isotope-container"), function () {
+      initIsotope = new Isotope(
+        isotopeItem.querySelector(".isotope-container"),
+        {
+          itemSelector: ".isotope-item",
+          layoutMode: layout,
+          filter: filter,
+          sortBy: sort,
+        }
+      );
+    });
+
+    isotopeItem
+      .querySelectorAll(".isotope-filters li")
+      .forEach(function (filters) {
+        filters.addEventListener(
+          "click",
+          function () {
+            isotopeItem
+              .querySelector(".isotope-filters .filter-active")
+              .classList.remove("filter-active");
+            this.classList.add("filter-active");
+            initIsotope.arrange({
+              filter: this.getAttribute("data-filter"),
+            });
+            if (typeof aosInit === "function") {
+              aosInit();
+            }
+          },
+          false
+        );
+      });
+  });
+
+  /**
+   * Init swiper sliders
+   */
+  function initSwiper() {
+    document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
+      let config = JSON.parse(
+        swiperElement.querySelector(".swiper-config").innerHTML.trim()
+      );
+
+      if (swiperElement.classList.contains("swiper-tab")) {
+        initSwiperWithCustomPagination(swiperElement, config);
+      } else {
+        new Swiper(swiperElement, config);
+      }
+    });
+  }
+
+  window.addEventListener("load", initSwiper);
+
+  /**
+   * Correct scrolling position upon page load for URLs containing hash links.
+   */
+  window.addEventListener("load", function (e) {
+    if (window.location.hash) {
+      if (document.querySelector(window.location.hash)) {
+        setTimeout(() => {
+          let section = document.querySelector(window.location.hash);
+          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
+          window.scrollTo({
+            top: section.offsetTop - parseInt(scrollMarginTop),
+            behavior: "smooth",
+          });
+        }, 100);
+      }
+    }
+  });
+
+  /**
+   * Navmenu Scrollspy
+   */
+  let navmenulinks = document.querySelectorAll(".navmenu a");
+
+  function navmenuScrollspy() {
+    navmenulinks.forEach((navmenulink) => {
+      if (!navmenulink.hash) return;
+      let section = document.querySelector(navmenulink.hash);
+      if (!section) return;
+      let position = window.scrollY + 200;
+      if (
+        position >= section.offsetTop &&
+        position <= section.offsetTop + section.offsetHeight
+      ) {
+        document
+          .querySelectorAll(".navmenu a.active")
+          .forEach((link) => link.classList.remove("active"));
+        navmenulink.classList.add("active");
+      } else {
+        navmenulink.classList.remove("active");
+      }
+    });
+  }
+
+  // Run scrollspy on load and scroll. Also ensure on standalone pages
+  // (profil.html, dokumentasi.html, etc.) the correct navbar link is
+  // marked `active` based on the current filename.
+  function setActiveNavForStandalonePages() {
+    try {
+      const path = window.location.pathname.split("/").pop() || "index.html";
+      const isIndex =
+        !path || path === "" || path === "index.html" || path === "/";
+      const IsProfile =
+        !path || path === "" || path === "profil.html" || path === "/";
+
+      // Remove any existing active class from nav links
+      document
+        .querySelectorAll(".navmenu a.active")
+        .forEach((l) => l.classList.remove("active"));
+
+      if (isIndex) {
+        // On the homepage, mark the Home/Beranda link active. Support href values
+        // like '#', 'index.html', '/', or empty href.
+        document.querySelectorAll(".navmenu a").forEach((a) => {
+          const href = (a.getAttribute("href") || "").trim();
+          if (
+            href === "#" ||
+            href === "index.html" ||
+            href === "./index.html" ||
+            href === "/" ||
+            href === ""
+          ) {
+            a.classList.add("active");
+          }
+        });
+        return;
+      }
+
+      // Find a nav link that exactly matches the current filename (ignore anchors)
+      document.querySelectorAll(".navmenu a").forEach((a) => {
+        const href = a.getAttribute("href") || "";
+        const filename = href.split("/").pop().split("#")[0];
+        if (filename && filename === path) {
+          a.classList.add("active");
+        }
+      });
+    } catch (e) {
+      // silent catch to avoid breaking navigation if DOM is unusual
+      // console.warn('setActiveNavForStandalonePages error', e);
+    }
+  }
+
+  window.addEventListener("load", () => {
+    navmenuScrollspy();
+    setActiveNavForStandalonePages();
+  });
+  document.addEventListener("scroll", navmenuScrollspy);
+})();
