@@ -664,7 +664,7 @@ h6 {
   position: relative;
 }
 
-.page-title h1 {
+.page-title h2 {
   font-size: 30px;
   font-weight: 700;
 }
@@ -781,7 +781,7 @@ section,
   align-items: center;
 }
 
-.hero h1 {
+.hero h2 {
   margin: 0;
   font-size: 35px;
   line-height: 56px;
@@ -942,7 +942,7 @@ section,
     min-height: 40vh;
   }
 
-  .hero h1 {
+  .hero h2 {
     font-size: 26px;
   }
 
@@ -986,7 +986,7 @@ section,
     min-height: 83vh;
   }
 
-  .hero h1 {
+  .hero h2 {
     font-size: 32px;
   }
 
@@ -1019,7 +1019,7 @@ section,
     min-height: 55vh;
   }
 
-  .hero h1 {
+  .hero h2 {
     font-size: 28px;
   }
 
@@ -1072,7 +1072,7 @@ section,
     align-items: flex-start;
   }
 
-  .hero h1 {
+  .hero h2 {
     font-size: 24px;
     line-height: 30px;
     margin-top: 8px;
@@ -1141,7 +1141,7 @@ section,
     margin: 0 8px 0 0;
   }
 
-  .hero h1 {
+  .hero h2 {
     font-size: 22px;
     line-height: 28px;
   }
@@ -1176,7 +1176,7 @@ section,
     margin: 0 8px 0 0;
   }
 
-  .hero h1 {
+  .hero h2 {
     font-size: 24px;
     line-height: 30px;
   }
@@ -1212,7 +1212,7 @@ section,
     margin: 0 5px 0 0;
   }
 
-  .hero h1 {
+  .hero h2 {
     font-size: 20px;
     line-height: 26px;
   }
