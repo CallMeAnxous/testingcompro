@@ -279,6 +279,10 @@
   .news-1 .article-title {
     font-size: 20px;
   }
+
+  .header .btn-getstarted, .header .btn-getstarted:focus {
+  margin-bottom: 0px;
+}
 }
 /*  */
 @media (max-width: 400px) {
@@ -289,4 +293,8 @@
   .news-1 .article-content p, li {
     font-size: 12px;
   }
+
+  .header .btn-getstarted, .header .btn-getstarted:focus {
+  margin-bottom: 0px;
+}
 }
